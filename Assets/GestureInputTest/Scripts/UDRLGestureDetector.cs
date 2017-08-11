@@ -44,8 +44,6 @@ namespace arcsin16.GestureInputTest
 
         private Vector3 lastPos;
         private Direction currentDirection;
-        private Vector3 axisY;
-        private Vector3 axisX;
 
         private StringBuilder gesturePattern = new StringBuilder();
         private float accumulatedDx;
@@ -95,8 +93,6 @@ namespace arcsin16.GestureInputTest
                 gesturePattern.Remove(0, gesturePattern.Length);
 
                 // タップし始めたタイミングで、事前の移動量を多少引き継ぐ
-                int signX = this.accumulatedDx < 0 ? -1 : 1;
-                int signY = this.accumulatedDy < 0 ? -1 : 1;
                 this.accumulatedDx = Mathf.Min(this.accumulatedDx, GestureThreshold);
                 this.accumulatedDy = Mathf.Min(this.accumulatedDy, GestureThreshold);
                 this.accumulatedDx = Mathf.Max(this.accumulatedDx, -GestureThreshold);
@@ -127,8 +123,8 @@ namespace arcsin16.GestureInputTest
         private void TraceGesture(InteractionSourceState state)
         {
             // カメラの上方向をy軸、右方向をx軸とする
-            this.axisY = Camera.main.transform.up;
-            this.axisX = Camera.main.transform.right;
+            var axisY = Camera.main.transform.up;
+            var axisX = Camera.main.transform.right;
 
             // 手の位置を取得
             Vector3 pos;
@@ -139,8 +135,8 @@ namespace arcsin16.GestureInputTest
                 this.lastPos = pos;
 
                 // x,y軸方向の移動量を取得する
-                float dx = Vector3.Dot(this.axisX, diff);
-                float dy = Vector3.Dot(this.axisY, diff);
+                float dx = Vector3.Dot(axisX, diff);
+                float dy = Vector3.Dot(axisY, diff);
 
                 // 誤差の蓄積で暴発しないように、dx, dyの大きい要素のみ加算する
                 // TODO: これむしろダメかも

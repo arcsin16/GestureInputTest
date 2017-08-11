@@ -509,11 +509,11 @@ PlayerSettings:
   m_MobileRenderingPath: 1
   metroPackageName: GestureInputTest
   metroPackageVersion: 
-  metroCertificatePath: 
+  metroCertificatePath: C:\Project\GestureInputTest\Assets\WSATestCertificate.pfx
   metroCertificatePassword: 
-  metroCertificateSubject: 
-  metroCertificateIssuer: 
-  metroCertificateNotAfter: 0000000000000000
+  metroCertificateSubject: DefaultCompany
+  metroCertificateIssuer: DefaultCompany
+  metroCertificateNotAfter: 00480ca45031d401
   metroApplicationDescription: GestureInputTest
   wsaImages: {}
   metroTileShortName: 
